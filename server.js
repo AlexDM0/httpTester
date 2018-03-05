@@ -12,4 +12,8 @@ app.post('/', (req, res) => {
   res.send('Done');
 })
 
-app.listen(4000, () => console.log('Example app listening on port 4000!'))
+app.set('port', (process.env.PORT || 5000));
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
