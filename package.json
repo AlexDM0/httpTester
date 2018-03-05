@@ -1,0 +1,23 @@
+{
+  "name": "httptester",
+  "version": "1.0.0",
+  "description": "simple http request tester",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexDM0/httpTester.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlexDM0/httpTester/issues"
+  },
+  "homepage": "https://github.com/AlexDM0/httpTester#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  }
+}
