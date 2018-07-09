@@ -8,7 +8,16 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 app.post('/', (req, res) => {
-  console.log("req.body",req.body);
+  console.log("POST req.body",req.body);
+  res.send('Done');
+})
+
+app.get('/', (req, res) => {
+  console.log("GET req.body",req.body);
+  res.send('Done');
+})
+app.put('/', (req, res) => {
+  console.log("PUT req.body",req.body);
   res.send('Done');
 })
 
