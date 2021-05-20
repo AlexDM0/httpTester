@@ -1,6 +1,6 @@
-
+const util    = require('./util')
 const express = require('express')
-const app = express()
+const app     = express();
 
 const bodyParser = require('body-parser')
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -12,13 +12,8 @@ const fs = require("fs");
 const path = require("path");
 const logFolder = "logs";
 
-let filename = path.join(logFolder,"hookLog" + new Date().toISOString().substr(0,19) + ".log");
-
-let logFolderExists = fs.existsSync(logFolder);
-if (!logFolderExists) {
-  fs.mkdirSync(logFolder);
-}
-
+let filename = path.join(logFolder,"hookLog" + util.getDateString() + ".log");
+util.ensureFolderExists(logFolder)
 console.log("Will write logs to:", filename);
 
 function addToLog(data) {
