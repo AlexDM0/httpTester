@@ -9,29 +9,38 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 const fs = require("fs");
-let filename = "logs/hookLog" + new Date().toISOString().substr(0,19) + ".log";
-console.log("filename", filename);
+const path = require("path");
+const logFolder = "logs";
 
-function add(data) {
+let filename = path.join(logFolder,"hookLog" + new Date().toISOString().substr(0,19) + ".log");
+
+let logFolderExists = fs.existsSync(logFolder);
+if (!logFolderExists) {
+  fs.mkdirSync(logFolder);
+}
+
+console.log("Will write logs to:", filename);
+
+function addToLog(data) {
   fs.appendFileSync(filename, data + "$$\n")
 }
 
 app.post('/', (req, res) => {
   console.log("POST req.body",req.body);
   res.send('Done');
-  add(JSON.stringify(req.body))
+  addToLog(JSON.stringify(req.body))
 })
 
 app.get('/', (req, res) => {
   console.log("GET req.body",req.body);
   res.send('Done');
-  add(JSON.stringify(req.body))
+  addToLog(JSON.stringify(req.body))
 })
 
 app.put('/', (req, res) => {
   console.log("PUT req.body",req.body);
   res.send('Done');
-  add(JSON.stringify(req.body))
+  addToLog(JSON.stringify(req.body))
 })
 
 app.set('port', (process.env.PORT || 5000));
